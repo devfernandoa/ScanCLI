@@ -1,6 +1,6 @@
-# ReconApp CLI
+# Scan CLI
 
-ReconApp CLI é uma ferramenta de reconhecimento unificado que permite realizar diversas operações de segurança em redes e domínios. Este projeto é uma versão baseada em terminal do ReconApp, que oferece funcionalidades como escaneamento de portas, consultas WHOIS, enumeração DNS, escaneamento de subdomínios e escaneamento de diretórios.
+Scan CLI é uma ferramenta de reconhecimento unificado que permite realizar diversas operações de segurança em redes e domínios. Este projeto é uma versão baseada em terminal do ReconApp, que oferece funcionalidades como escaneamento de portas, consultas WHOIS, enumeração DNS, escaneamento de subdomínios e escaneamento de diretórios.
 
 ## Estrutura do Projeto
 
