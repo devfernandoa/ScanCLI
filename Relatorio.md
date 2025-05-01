@@ -1,6 +1,12 @@
-# Roteiro 2 - Respostas
+# Roteiro 2 - Relatório
 
-## 1. Cinco Ferramentas Úteis de Reconhecimento (Além de Port Scanning)
+---
+
+## Perguntas
+
+---
+
+### 1. Cinco Ferramentas Úteis de Reconhecimento (Além de Port Scanning)
 
 - Shodan (shodan.io)
   - Função: Motor de busca para dispositivos conectados à internet (IoT, ICS, servidores).
@@ -24,7 +30,7 @@
 
 ---
 
-## 2. Diferença entre SYN Scan e TCP Connect Scan
+### 2. Diferença entre SYN Scan e TCP Connect Scan
 
 - TCP Connect Scan (-sT):
   - Como funciona: Tenta completar a conexão TCP padrão (handshake de 3 vias: SYN -> SYN/ACK -> ACK). Usa a chamada connect() do sistema operacional.
@@ -38,7 +44,7 @@
 
 ---
 
-## 3. Como Evitar Detecção por IPS Durante Reconhecimento
+### 3. Como Evitar Detecção por IPS Durante Reconhecimento
 
 IPS (Intrusion Prevention Systems) detectam scans por padrões anormais (muitas conexões, scans em sequencia) e assinaturas. Técnicas para evitar:
 
@@ -57,3 +63,51 @@ IPS (Intrusion Prevention Systems) detectam scans por padrões anormais (muitas 
 - Usar Decoys (-D no Nmap):
   - Técnica: Faz o scan parecer vir de múltiplos IPs falsos (decoy) além do seu IP real.
   - Impacto: Dificulta a identificação do atacante real nos logs do alvo. Não reduz o tráfego real e pode ser detectado por alguns IPS ou regras anti-spoofing.
+
+## Ferramentas Implementadas
+
+### 1. `port_scanner.py`
+
+- **Função:** Realiza escaneamento de portas TCP para identificar serviços ativos em um host.
+- **Tecnologias:** `socket`, `concurrent.futures.ThreadPoolExecutor`
+- **Uso Típico:** Identificar serviços como HTTP (porta 80), SSH (porta 22), FTP (porta 21), etc.
+
+---
+
+### 2. `directory_scanner.py`
+
+- **Função:** Força bruta em diretórios e arquivos de um servidor web.
+- **Tecnologias:** `requests`
+- **Uso Típico:** Identificar caminhos ocultos (e.g. `/admin`, `/login`, `/robots.txt`).
+
+---
+
+### 3. `whois_lookup.py`
+
+- **Função:** Realiza consulta WHOIS para obter informações sobre o domínio.
+- **Tecnologias:** `whois` (biblioteca Python)
+- **Uso Típico:** Verificar registrante, datas de criação/expiração e contatos administrativos.
+
+---
+
+### 4. `dns_enumerator.py`
+
+- **Função:** Enumera registros DNS (A, MX, NS, TXT) de um domínio.
+- **Tecnologias:** `dnspython`
+- **Uso Típico:** Coleta de inteligência sobre a infraestrutura de rede.
+
+---
+
+### 5. `subdomain_scanner.py`
+
+- **Função:** Realiza brute-force de subdomínios usando uma wordlist.
+- **Tecnologias:** `dns.resolver`
+- **Uso Típico:** Encontrar subdomínios ativos como `api.exemplo.com`, `mail.exemplo.com`, etc.
+
+---
+
+## Decisões de Arquitetura
+
+- **Modularidade:** Cada ferramenta está isolada em seu módulo Python.
+- **Reuso de Código:** Há um diretório `utils` para funções auxiliares.
+- **Integração Central:** O script `main.py` coordena a execução das ferramentas e interações com o usuário.
